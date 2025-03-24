@@ -2,7 +2,7 @@ import numpy as np
 import sympy as sp
 import matplotlib.pyplot as plt
 from scipy.integrate import quad
-from tkinter import Tk, StringVar, Entry, Label, Button, IntVar, filedialog
+from tkinter import Tk, StringVar, Entry, Label, Button, IntVar
 import ttkbootstrap as tb
 
 # Function Parsing
@@ -38,19 +38,29 @@ def plot_graph():
         plt.plot(x_vals, y_vals, label='Original Function', color='blue')
         
         plot_choice = plot_option.get()
+        results_text = ""
+        
         if plot_choice in ['Derivative', 'Both']:
             derivative_order = derivative_order_var.get()
+            derivative_expr = sp.diff(func_expr, x, derivative_order)
             derivative_vals = [numerical_derivative(func_lambdified, val, order=derivative_order) for val in x_vals]
             plt.plot(x_vals, derivative_vals, label=f'{derivative_order}-order Derivative', linestyle='dashed', color='red')
+            results_text += f"Symbolic {derivative_order}-order Derivative: {derivative_expr}\n"
+        
         if plot_choice in ['Integral', 'Both']:
+            integral_expr = sp.integrate(func_expr, x)
             integral_vals = [numerical_integral(func_lambdified, float(x_min.get()), val) for val in x_vals]
             plt.plot(x_vals, integral_vals, label='Integral', linestyle='dotted', color='green')
+            results_text += f"Symbolic Integral: {integral_expr} + C\n"
         
         plt.legend()
         plt.xlabel('x')
         plt.ylabel('y')
         plt.title('Function Visualization')
         plt.grid()
+        
+        plt.figtext(0.1, -0.1, results_text, fontsize=10, wrap=True, horizontalalignment='left')
+        
         plt.show()
     except Exception as e:
         print(f"Error: {e}")

@@ -39,7 +39,6 @@ def save_graph():
         return
     
     try:
-        # Ask user for save location
         filetypes = [
             ('PNG files', '*.png'),
             ('JPEG files', '*.jpg'),
@@ -60,8 +59,11 @@ def save_graph():
     except Exception as e:
         result_label.config(text=f"Error saving graph: {str(e)}", foreground="#f44336")
 
+
 def plot_graph():
     try:
+        global current_figure  # Ensure it's accessible in save_graph()
+        
         # Clear previous results
         result_label.config(text="", foreground="white")
         
@@ -155,12 +157,16 @@ def plot_graph():
         canvas = FigureCanvasTkAgg(fig, master=graph_frame)
         canvas.draw()
         canvas.get_tk_widget().pack(side=TOP, fill=BOTH, expand=1)
+
+        # Assign the figure globally so it can be saved
+        current_figure = fig  
         
         result_label.config(text="Graph generated successfully!", foreground="#4caf50")
         
     except Exception as e:
         result_label.config(text=f"Error: {str(e)}", foreground="#f44336")
         print(f"DEBUG: {str(e)}")
+
 
 # GUI Setup with dark theme
 root = tb.Window(themename="darkly")

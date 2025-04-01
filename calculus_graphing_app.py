@@ -413,7 +413,8 @@ order_combo.pack(side=LEFT, padx=5)
 # Plot options
 plot_frame = tb.Frame(options_frame)
 plot_frame.pack(fill=X, pady=5)
-
+ 
+ 
 plot_option = tb.StringVar()
 tb.Label(plot_frame, text="Show:").pack(side=LEFT, padx=5)
 plot_combo = tb.Combobox(plot_frame, textvariable=plot_option, 

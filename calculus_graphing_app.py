@@ -93,12 +93,12 @@ def update_result_colors():
                     widget.config(foreground=text_color)
 
 def show_help():
-    help_window = tb.Toplevel(title="JustGraphIt Help")
+    help_window = tb.Toplevel(title="EshiroViz Help")
     help_window.geometry("500x400")
     help_window.grab_set()
 
     help_text = """
-    JustGraphIt Help Guide
+    EshiroViz Help Guide
 
     1. FUNCTION INPUT:
     - Enter mathematical functions using standard notation
@@ -305,7 +305,7 @@ def plot_graph():
 
 # GUI Setup with dark theme
 root = tb.Window(themename="darkly")
-root.title("JustGraphIt")
+root.title("EshiroViz")
 
 # Set application logo (window icon)
 try:
@@ -373,7 +373,7 @@ results_frame = tb.Frame(right_frame)
 results_frame.pack(side=BOTTOM, fill=X)
 
 # Header
-header = tb.Label(control_frame, text="JustGraphIt", font=('Helvetica', 16, 'bold'))
+header = tb.Label(control_frame, text="EshiroViz", font=('Helvetica', 16, 'bold'))
 header.pack(pady=(0, 20))
 
 # Input Frame

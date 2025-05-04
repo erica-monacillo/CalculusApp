@@ -479,6 +479,15 @@ def plot_graph():
                     )
                     definite_label.pack(anchor=W)
 
+                if plot_option.get() in ["Piecewise", "Both"]:
+                    piecewise_label = tb.Label(
+                        equations_frame,
+                        text=f"Piecewise: {sp.pretty(func_expr, use_unicode=True)}",
+                        font=('Courier New', 10),
+                        foreground=text_color
+                    )
+                    piecewise_label.pack(anchor=W)
+
             except Exception as e:
                 print(f"Skipping invalid function '{func_str}': {e}")
                 continue
@@ -659,7 +668,8 @@ func_buttons_frame.pack(fill=X, pady=10)
 functions = [
     ('sin', 'sin(x)'), ('cos', 'cos(x)'), ('tan', 'tan(x)'), ('log', 'log(x)'),
     ('exp', 'exp(x)'), ('sqrt', 'sqrt(x)'), ('rational', '(x**2 + 1) / (x - 1)'),
-    ('piecewise', '{x < 0: x**2, x >= 0: x + 1}'), ('definite', 'integrate(x**2, (x, 0, 1))')
+    ('piecewise', '{x < 0: x**2, x >= 0: x + 1}'), ('definite', 'integrate(x**2, (x, 0, 1))'),
+    ('csc', 'csc(x)'), ('cot', 'cot(x)'), ('sec', 'sec(x)')  # New functions added
 ]
 
 for i, (func_name, func_template) in enumerate(functions):
